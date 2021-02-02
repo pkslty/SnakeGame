@@ -15,25 +15,15 @@ namespace SnakeGame
             p1.Draw();
             p2.Draw();
 
-            List<int> numList = new List<int>(2)
-            {
-                345,
-                4325,
-                3253,
-                132,
-                675
-            };
-            foreach (int i in numList)
-                Console.WriteLine(i);
+            HorizontalLine line1 = new HorizontalLine(10, 70, 5, '#');
+            line1.Draw();
 
-            List<string> varList = new List<string>();
-            varList.Add("string");
+            VerticalLine line2 = new VerticalLine(10, 25, 10, '#');
+            line2.Draw();
 
-            List<Point> pList = new List<Point>();
-            pList.Add(p1);
-            pList.Add(p2);
-            pList.Clear();
-         
+
+
+
 
 
             //Console.WriteLine("Hello World!");

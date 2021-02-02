@@ -15,21 +15,25 @@ namespace SnakeGame
             p1.Draw();
             p2.Draw();
 
-            List<int> numList = new List<int>(2);
-            numList[1] = 345;
-            numList[2] = 3214;
+            List<int> numList = new List<int>(2)
+            {
+                345,
+                4325,
+                3253,
+                132,
+                675
+            };
+            foreach (int i in numList)
+                Console.WriteLine(i);
 
             List<string> varList = new List<string>();
-            varList[6] = "string";
+            varList.Add("string");
 
             List<Point> pList = new List<Point>();
-            pList[0] = p1;
-            pList[1] = p2;
-
-            List<int> iList = new List<int>();
-            iList[0] = 1;
-            iList[10] = 2;
-            iList[40] = 4;
+            pList.Add(p1);
+            pList.Add(p2);
+            pList.Clear();
+         
 
 
             //Console.WriteLine("Hello World!");

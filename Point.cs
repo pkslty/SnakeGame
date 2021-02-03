@@ -46,6 +46,11 @@ namespace SnakeGame
 
         }
 
+        public bool isHit(Point p)
+        {
+            return (this.x == p.x) && (this.y == p.y);
+        }
+
         //Функция перемещения точки на целое число позиций в заданном направлении
         public void Move(int offset, Direction direction)
         {

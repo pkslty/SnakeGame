@@ -8,7 +8,7 @@ namespace SnakeGame
 {
     class Snake : Figure
     {
-        Direction direction;
+        public Direction direction;
         int length;
 
         public Snake(Point tail, int length, Direction direction)
@@ -41,9 +41,19 @@ namespace SnakeGame
             newHead.Move(1, direction);
 
             return newHead;
-
-
         }
 
+        public bool HaveEat(Point food)
+        {
+            Point head = makeNewHead();
+            if (head.isHit(food))
+            {
+                food.symbol = head.symbol;
+                pList.Add(food);
+                food.Draw();
+                return true;
+            }
+            return false;
+        }
     }
 }

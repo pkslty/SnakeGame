@@ -38,7 +38,14 @@ namespace SnakeGame
             Console.Write(symbol);
 
         }
-        
+        //Функция стирания
+        public void Clear()
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(' ');
+
+        }
+
         //Функция перемещения точки на целое число позиций в заданном направлении
         public void Move(int offset, Direction direction)
         {

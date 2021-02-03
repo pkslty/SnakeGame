@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 
 namespace SnakeGame
 {
@@ -23,6 +25,13 @@ namespace SnakeGame
             Point p1 = new Point(50, 10, '*');
             Snake snake = new Snake(p1, 5, Direction.LEFT);
             snake.Draw();
+            int i = 10;
+            while (i > 1)
+            {
+                snake.Move();
+                Thread.Sleep(300);
+                i -= 1;
+            }
 
 
 

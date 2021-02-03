@@ -9,14 +9,7 @@ namespace SnakeGame
         {
             Console.SetWindowSize(122, 32);
             Console.SetBufferSize(122, 32);
-
-            Point p1 = new Point(1, 5, '#');
-            Point p2 = new Point();
-            p2.x = 3;
-            p2.y = 6;
-            p2.symbol = '*';
-            p1.Draw();
-            p2.Draw();
+            Console.CursorVisible = false;
 
             HorizontalLine line1 = new HorizontalLine(1, 120, 1, '#');
             line1.Draw();
@@ -27,7 +20,9 @@ namespace SnakeGame
             VerticalLine line4 = new VerticalLine(1, 30, 120, '#');
             line4.Draw();
 
-
+            Point p1 = new Point(50, 10, '*');
+            Snake snake = new Snake(p1, 5, Direction.LEFT);
+            snake.Draw();
 
 
 

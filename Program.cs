@@ -11,6 +11,7 @@ namespace SnakeGame
         {
             int hs = Console.LargestWindowHeight;
             int ws = 2 * hs;
+            int delay = 120;
 
             int startSnakeLength = 2;
             //Console.BackgroundColor = ConsoleColor.Green;
@@ -19,18 +20,20 @@ namespace SnakeGame
             //Console.Write(Console.LargestWindowHeight);
             //Console.ReadLine();
 
-            Console.SetWindowSize(ws, hs);
-            Console.SetBufferSize(ws, hs);
+            Console.SetWindowSize(ws+14, hs);
+            Console.SetBufferSize(ws+14, hs);
             Console.CursorVisible = false;
 
-            walls walls = new walls(0, 0, ws - 1, hs - 1, '+');
+            walls walls = new walls(0, 0, ws - 1, hs - 1, '#');
             walls.Draw();
 
 
-            Point p1 = new Point(25, 10, '*', ConsoleColor.Cyan, ConsoleColor.Black);
-            Snake snake = new Snake(p1, startSnakeLength, Direction.LEFT);
+
+            Point tail = new Point(25, 10, '*', ConsoleColor.Cyan, ConsoleColor.Black);
+            Snake snake = new Snake(tail, startSnakeLength, Direction.LEFT);
             snake.Draw();
-            FoodCreator foodCreator = new FoodCreator(2, ws - 2, 2, hs - 2, '$');
+            Statistics statistics = new Statistics(delay, snake.length);
+            FoodCreator foodCreator = new FoodCreator(2, ws - 2, 2, hs - 2, '+');
 
             Point food = foodCreator.CreateNewFood();
             food.Draw();
@@ -64,6 +67,7 @@ namespace SnakeGame
                 }
                 if (snake.HaveEat(food))
                 {
+                    statistics.setStatistics(delay, snake.length);
                     do
                     {
                         food = foodCreator.CreateNewFood();
@@ -75,7 +79,8 @@ namespace SnakeGame
                     snake.Move();
                     
                 }
-                Thread.Sleep(120);
+                Thread.Sleep(delay);
+                statistics.printStatistics(ws+1);
             }
 
 

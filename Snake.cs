@@ -9,7 +9,7 @@ namespace SnakeGame
     class Snake : Figure
     {
         public Direction direction;
-        int length;
+        public int length;
 
         public Snake(Point tail, int length, Direction direction)
         {
@@ -51,6 +51,7 @@ namespace SnakeGame
                 food.symbol = head.symbol;
                 pList.Add(food);
                 food.Draw();
+                this.length += 1;
                 return true;
             }
             return false;

@@ -9,22 +9,25 @@ namespace SnakeGame
     {
         static void Main(string[] args)
         {
-            int ws = 80, hs = 35;
+            int hs = Console.LargestWindowHeight;
+            int ws = 2 * hs;
+
+            int startSnakeLength = 2;
+            //Console.Write(Console.LargestWindowWidth);
+            //Console.ReadLine();
+            //Console.Write(Console.LargestWindowHeight);
+            //Console.ReadLine();
+
             Console.SetWindowSize(ws, hs);
             Console.SetBufferSize(ws, hs);
             Console.CursorVisible = false;
 
-            HorizontalLine line1 = new HorizontalLine(1, ws-1, 1, '#');
-            line1.Draw();
-            HorizontalLine line2 = new HorizontalLine(1, ws-1, hs-1, '#');
-            line2.Draw();
-            VerticalLine line3 = new VerticalLine(1, hs-1, 1, '#');
-            line3.Draw();
-            VerticalLine line4 = new VerticalLine(1, hs-1, ws-1, '#');
-            line4.Draw();
+            walls walls = new walls(0, 0, ws - 1, hs - 1, '+');
+            walls.Draw();
+
 
             Point p1 = new Point(50, 10, '*');
-            Snake snake = new Snake(p1, 25, Direction.LEFT);
+            Snake snake = new Snake(p1, startSnakeLength, Direction.LEFT);
             snake.Draw();
             FoodCreator foodCreator = new FoodCreator(2, ws - 2, 2, hs - 2, '$');
 
@@ -32,6 +35,8 @@ namespace SnakeGame
             food.Draw();
             while (true)
             {
+                if (walls.isHit(snake) || snake.isHitTail())
+                    break;
                 if (Console.KeyAvailable) {
                     ConsoleKeyInfo key = Console.ReadKey();
                     switch (key.Key)
@@ -73,6 +78,7 @@ namespace SnakeGame
 
 
             //Console.WriteLine("Hello World!");
+            Console.WriteLine("GAME OVER");
             Console.ReadLine();
         }
     }

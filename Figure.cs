@@ -15,5 +15,16 @@ namespace SnakeGame
             foreach (Point p in pList)
                 p.Draw();
         }
+
+        public bool isHit(Figure figure)
+        {
+            foreach(var point in this.pList)
+            {
+                foreach (var fpoint in figure.pList)
+                    if (fpoint.isHit(point))
+                        return true;
+            }
+            return false;
+        }
     }
 }

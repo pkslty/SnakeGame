@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace SnakeGame
@@ -9,6 +10,8 @@ namespace SnakeGame
         //Координаты точки
         public int x, y;
         public char symbol;
+        public ConsoleColor backGroundColor;
+        public ConsoleColor color;
 
         //Конструкторы
         public Point()
@@ -21,6 +24,18 @@ namespace SnakeGame
             this.x = x;
             this.y = y;
             this.symbol = symbol;
+            this.color = Console.ForegroundColor;
+            this.backGroundColor = Console.BackgroundColor;
+        }
+
+        //Создание точки с цветами, отличными от настроек консоли
+        public Point(int x, int y, char symbol, ConsoleColor color, ConsoleColor backGroundColor)
+        {
+            this.x = x;
+            this.y = y;
+            this.symbol = symbol;
+            this.color = color;
+            this.backGroundColor = backGroundColor;
         }
 
         //Создание точки по точке
@@ -29,13 +44,21 @@ namespace SnakeGame
             this.x = p.x;
             this.y = p.y;
             this.symbol = p.symbol;
+            this.color = p.color;
+            this.backGroundColor = p.backGroundColor;
         }
 
         //Функция рисования
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
+            ConsoleColor color = Console.ForegroundColor;
+            ConsoleColor backGroundColor = Console.BackgroundColor;
+            Console.BackgroundColor = this.backGroundColor;
+            Console.ForegroundColor = this.color;
             Console.Write(symbol);
+            Console.BackgroundColor = backGroundColor;
+            Console.ForegroundColor = color;
 
         }
         //Функция стирания

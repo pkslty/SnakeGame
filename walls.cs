@@ -35,5 +35,14 @@ namespace SnakeGame
                     return true;
             return false;
         }
+
+        public new bool isHit(Point p)
+        {
+            foreach (var f in wallList)
+                if (f.isHit(p))
+                    return true;
+            return false;
+        }
+
     }
 }

@@ -13,7 +13,8 @@ namespace SnakeGame
             int ws = 2 * hs;
 
             int startSnakeLength = 2;
-            //Console.Write(Console.LargestWindowWidth);
+            //Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Green;
             //Console.ReadLine();
             //Console.Write(Console.LargestWindowHeight);
             //Console.ReadLine();
@@ -26,7 +27,7 @@ namespace SnakeGame
             walls.Draw();
 
 
-            Point p1 = new Point(50, 10, '*');
+            Point p1 = new Point(25, 10, '*', ConsoleColor.Cyan, ConsoleColor.Black);
             Snake snake = new Snake(p1, startSnakeLength, Direction.LEFT);
             snake.Draw();
             FoodCreator foodCreator = new FoodCreator(2, ws - 2, 2, hs - 2, '$');
@@ -63,7 +64,10 @@ namespace SnakeGame
                 }
                 if (snake.HaveEat(food))
                 {
-                    food = foodCreator.CreateNewFood();
+                    do
+                    {
+                        food = foodCreator.CreateNewFood();
+                    } while (!walls.isHit(food) && snake.isHit(food));
                     food.Draw();
                 }
                 else
@@ -71,7 +75,7 @@ namespace SnakeGame
                     snake.Move();
                     
                 }
-                Thread.Sleep(100);
+                Thread.Sleep(120);
             }
 
 

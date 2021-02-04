@@ -25,11 +25,26 @@ namespace SnakeGame
         public Point CreateNewFood()
         {
             Random random = new Random();
+            ConsoleColor value;
+            Point food;
             int x = random.Next(xBoundMin, xBoundMax);
             int y = random.Next(yBoundMin, yBoundMax);
-            Point food = new Point(x, y, this.kind);
+
+            do
+            {
+                value = RandomEnumValue<ConsoleColor>();
+                food = new Point(x, y, this.kind, value, ConsoleColor.Black);
+            } while (value == ConsoleColor.Black);
+            
 
             return food;
+        }
+
+        static Random _R = new Random();
+        private T RandomEnumValue<T>()
+        {
+            var v = Enum.GetValues(typeof(T));
+            return (T)v.GetValue(_R.Next(v.Length));
         }
     }
 }

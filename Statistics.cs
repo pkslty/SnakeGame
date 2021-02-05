@@ -23,28 +23,28 @@ namespace SnakeGame
             const int second = 1000; //milliseconds
             this.score += 1;
             this.length = length;
-            this.speed = Math.Round((double)1000/delay, 2);
+            this.speed = Math.Round((double)second/delay, 2);
         }
 
         public void printStatistics(int x)
         {
             Console.SetCursorPosition(x, 3);
-            Console.Write("Statistics");
+            Console.WriteLine("Statistics");
 
             Console.SetCursorPosition(x, 5);
-            Console.Write("Score:");
+            Console.WriteLine("Score:");
             Console.SetCursorPosition(x, 6);
-            Console.Write(score);
+            Console.WriteLine(score);
             Console.SetCursorPosition(x, 8);
-            Console.Write("Snake length:");
+            Console.WriteLine("Snake length:");
             Console.SetCursorPosition(x, 9);
-            Console.Write(length);
+            Console.WriteLine(length);
             Console.SetCursorPosition(x, 11);
-            Console.Write("Snake speed");
+            Console.WriteLine("Snake speed");
             Console.SetCursorPosition(x, 12);
-            Console.Write("chars/second:");
+            Console.WriteLine("chars/second:");
             Console.SetCursorPosition(x, 13);
-            Console.Write(speed);
+            Console.WriteLine(speed);
 
         }
     }

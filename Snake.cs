@@ -43,7 +43,7 @@ namespace SnakeGame
             return newHead;
         }
 
-        public bool HaveEat(Point food)
+        public bool HaveEat(Food food)
         {
             Point head = makeNewHead();
             if (head.isHit(food))
@@ -51,10 +51,18 @@ namespace SnakeGame
                 food.symbol = head.symbol;
                 pList.Add(food);
                 food.Draw();
-                this.length += 1;
+                this.length = pList.Count;
                 return true;
             }
             return false;
+        }
+
+        public void throwTail()
+        {
+            Point tail = pList[0];
+            pList.Remove(tail);
+            tail.Clear();
+            this.length = pList.Count();
         }
 
 

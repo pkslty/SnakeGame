@@ -11,31 +11,33 @@ namespace SnakeGame
         int xBoundMax;
         int yBoundMin;
         int yBoundMax;
-        char kind;
+        ConsoleColor backGrounColor;
 
-        public FoodCreator(int xBoundMin, int xBoundMax, int yBoundMin, int yBoundMax, char kind)
+        public FoodCreator(int xBoundMin, int xBoundMax, int yBoundMin, int yBoundMax, ConsoleColor backGrounColor)
         {
             this.xBoundMin = xBoundMin;
             this.xBoundMax = xBoundMax;
             this.yBoundMin = yBoundMin;
             this.yBoundMax = yBoundMax;
-            this.kind = kind;
+            this.backGrounColor = backGrounColor;
         }
 
-        public Point CreateNewFood()
+        public Food CreateNewFood()
         {
             Random random = new Random();
-            ConsoleColor value;
-            Point food;
+            ConsoleColor randomColor;
+            char randomKind;
+            Food food;
             int x = random.Next(xBoundMin, xBoundMax);
             int y = random.Next(yBoundMin, yBoundMax);
 
+            randomKind = (char)RandomEnumValue<FoodKind>();
             do
             {
-                value = RandomEnumValue<ConsoleColor>();
-                food = new Point(x, y, this.kind, value, ConsoleColor.Black);
-            } while (value == ConsoleColor.Black);
+                randomColor = RandomEnumValue<ConsoleColor>();
+            } while (randomColor == ConsoleColor.Black);
             
+            food = new Food(x, y, randomKind, randomColor, backGrounColor);
 
             return food;
         }
